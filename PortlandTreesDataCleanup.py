@@ -1,6 +1,8 @@
 # Portland trees data clean up
 
 import pandas as pd
+import matplotlib.pyplot as plt  # to plot in graph
+import seaborn as sns
 
 try:
     # This is the location of the file we are going to be looking at
@@ -24,3 +26,20 @@ except FileNotFoundError:
     )
 except Exception as e:
     print(f"An error occurred: {e}")
+
+if "Species" in df.columns:
+    species_counts = df["Species"].value_counts()
+
+    top_10_species = species_counts.head(7)
+
+    labels = top_10_species.index.tolist()
+    values = top_10_species.values.tolist()
+
+    plt.figure(figsize=(10, 7))
+    sns.barplot(x=values, y=labels, palette="viridis")
+    plt.xlabel("Tree Nums", fontsize=12)
+    plt.ylabel("Tree Species", fontsize=12)
+
+    plt.tight_layout()
+
+    plt.show()
