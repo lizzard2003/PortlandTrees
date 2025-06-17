@@ -27,19 +27,23 @@ except FileNotFoundError:
 except Exception as e:
     print(f"An error occurred: {e}")
 
-if "Species" in df.columns:
-    species_counts = df["Species"].value_counts()
+if "Family" in df.columns:  # we are wanting all the family label from the dataframe
+    species_counts = df["Family"].value_counts()
 
-    top_10_species = species_counts.head(7)
+    top_7_species = species_counts.head(7)  # e are getting the top 7
 
-    labels = top_10_species.index.tolist()
-    values = top_10_species.values.tolist()
+    labels = (
+        top_7_species.index.tolist()
+    )  # will make a list of the indexes and make them labels
+    values = top_7_species.values.tolist()
 
-    plt.figure(figsize=(10, 7))
-    sns.barplot(x=values, y=labels, palette="viridis")
-    plt.xlabel("Tree Nums", fontsize=12)
-    plt.ylabel("Tree Species", fontsize=12)
+    plt.figure(figsize=(7, 7))  # graph size
+    sns.barplot(
+        x=values, y=labels, palette="viridis"
+    )  # how we will have the graph plotted
+    plt.xlabel("Tree Nums", fontsize=12)  # label for x on the graph
+    plt.ylabel("Tree Family", fontsize=12)  # label for y and the font size
 
-    plt.tight_layout()
-
-    plt.show()
+    plt.tight_layout()  # this adjusts spacing between subplots and the figure margins
+    # tight layout automates the process  manually tweaking
+    plt.show()  # this displays the Matplotlib figures that were created.
