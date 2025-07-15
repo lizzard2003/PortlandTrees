@@ -19,3 +19,8 @@ seaborn
 You can install them using pip:
 
 pip install pandas matplotlib seaborn
+
+
+<img width="696" height="762" alt="Portland Trees Graph" src="https://github.com/user-attachments/assets/ea99a381-ded3-432d-ab7d-305f46694717" />
+
+
