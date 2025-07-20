@@ -1,6 +1,7 @@
 # PortlandTrees
+
 Portland Trees Data Cleanup
-This project focuses on cleaning and exploring tree data from Portland. It uses Python with pandas, matplotlib, and seaborn to read, inspect, and visualize the dataset.
+This project focuses on cleaning and exploring tree data from Portland. It uses Python with pandas, matplotlib, and seaborn to read, inspect, and visualize the dataset. It makes a html file that maps the areas that the trees are in with green dots on a map.
 
 Project Structure
 The core of this project involves:

@@ -3,6 +3,9 @@
 import pandas as pd
 import matplotlib.pyplot as plt  # to plot in graph
 import seaborn as sns
+import folium
+from folium.plugins import MarkerCluster
+import webbrowser
 
 
 def load_data(path):
@@ -43,10 +46,36 @@ def plot_top_families(df, top_n=7):
         plt.show()  # this displays the Matplotlib figures that were created.
 
 
+def mapit(df):
+    # Check for latitude and longitude columns
+    if "latitude" in df.columns and "longitude" in df.columns:
+        # Create a base map centered on Portland
+        portland_map = folium.Map(location=[45.5236, -122.6750], zoom_start=12)
+        marker_cluster = MarkerCluster().add_to(portland_map)
+        # Add tree markers to the map
+        for _, row in df.iterrows():
+            folium.CircleMarker(
+                location=[row["latitude"], row["longitude"]],
+                radius=3,
+                color="green",
+                fill=True,
+                fill_opacity=0.6,
+                popup=f"Family: {row['Family']}" if "Family" in row else None,
+            ).add_to(portland_map)
+
+        # Save the map to an HTML file
+        portland_map.save("portland_tree_map.html")
+        webbrowser.open("portland_tree_map.html")
+        print("Map saved as 'portland_tree_map.html'")
+    else:
+        print("Latitude and Longitude columns not found in dataset.")
+
+
 # Run the project
 file_path = "/Users/liz/PortlandTreeDataClean/PortlandTrees.csv"
 # we make a data frame from the CSV files
 df = load_data(file_path)
 if df is not None:
-    explore_data(df)
-    plot_top_families(df)
+    explore_data(df)  # calling each function
+    plot_top_families(df)  # passing the dataframe to each function
+    mapit(df)
