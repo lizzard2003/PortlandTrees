@@ -64,9 +64,9 @@ def mapit(df):
             ).add_to(portland_map)
 
         # Save the map to an HTML file
-        portland_map.save("portland_tree_map.html")
-        webbrowser.open("portland_tree_map.html")
-        print("Map saved as 'portland_tree_map.html'")
+        portland_map.save("index.html")
+        webbrowser.open("index.html")
+        print("Map saved as 'index.html'")
     else:
         print("Latitude and Longitude columns not found in dataset.")
 
