@@ -29,6 +29,8 @@ def explore_data(df):
     print("This is describe:")
     print(df.describe(include="all"))
 
+    # print(df.isna().sum())  # the count of missing val per column
+
 
 def plot_top_families(df, top_n=7):
     if "Family" in df.columns:  # we are wanting all the family label from the dataframe
