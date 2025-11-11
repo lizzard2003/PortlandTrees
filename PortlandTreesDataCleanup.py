@@ -47,7 +47,19 @@ def plot_top_families(df, top_n=7):
         # tight layout automates the process  manually tweaking
         plt.show()  # this displays the Matplotlib figures that were created.
 
+def crownSize(df):
+    if "Crown Height" in df.columns:
+        avg_heights = df.groupby("Common")["Crown Height"].mean().sort_values(ascending=False)
+        plt.figure(figsize=(7, 7), num="Portland Trees")  # graph size
+        sns.lineplot(
+            x=avg_heights.values, y=avg_heights.index, palette="seagreen"
+        )  # how we will have the graph plotted
+        plt.xlabel("Crown Height", fontsize=12)  # label for x on the graph
+        plt.ylabel("Tree Family", fontsize=12)  # label for y and the font size
 
+        plt.tight_layout()  # this adjusts spacing between subplots and the figure margins
+        # tight layout automates the process  manually tweaking
+        plt.show()  # this displays the Matplotlib figures that were created.
 def mapit(df):
     # Check for latitude and longitude columns
     if "latitude" in df.columns and "longitude" in df.columns:
@@ -79,5 +91,6 @@ file_path = "/Users/liz/PortlandTreeDataClean/PortlandTrees.csv"
 df = load_data(file_path)
 if df is not None:
     explore_data(df)  # calling each function
-    plot_top_families(df)  # passing the dataframe to each function
-    mapit(df)
+    #plot_top_families(df)  # passing the dataframe to each function
+    crownSize(df)
+   #mapit(df)
